@@ -1,6 +1,6 @@
 
 import org.example.HomePage;
-import org.example.Order;
+import org.example.OrderPage;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -13,7 +13,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 @RunWith(Parameterized.class)
-public class MakeAnOrder {
+public class TestMakeAnOrder {
     private WebDriver driver;
 
     // Параметры для тестирования кнопки "Заказать" (местоположение кнопки) и данных заказа
@@ -29,7 +29,7 @@ public class MakeAnOrder {
     private final String comment;
 
     // Конструктор для параметризации
-    public MakeAnOrder(String buttonLocation, String name, String surname, String address, String metro, String telephone, String date, String rentalPeriod, String color, String comment) {
+    public TestMakeAnOrder(String buttonLocation, String name, String surname, String address, String metro, String telephone, String date, String rentalPeriod, String color, String comment) {
         this.buttonLocation = buttonLocation;
         this.name = name;
         this.surname = surname;
@@ -65,7 +65,7 @@ public class MakeAnOrder {
     }
 
     @Test
-    public void testOrderAndButton() {
+    public void TestOrderAndButton() {
         HomePage objHomePage = new HomePage(this.driver);
         objHomePage.openSite();
 
@@ -78,26 +78,26 @@ public class MakeAnOrder {
         }
 
         // Проверка видимости кнопки
-        Order objOrder = new Order(this.driver);
+        OrderPage objOrderPage = new OrderPage(this.driver);
         WebDriverWait wait = new WebDriverWait(this.driver, 5L);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(objOrder.getHeadingWhoSamokat()));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(objOrderPage.getHeadingWhoSamokat()));
 
-        WebElement heading = this.driver.findElement(objOrder.getHeadingWhoSamokat());
+        WebElement heading = this.driver.findElement(objOrderPage.getHeadingWhoSamokat());
         Assert.assertTrue(heading.isDisplayed());
 
         // Далее выполняем отправку заказа с использованием параметров для заказа
-        objOrder.nameSet(this.name);
-        objOrder.surnameSet(this.surname);
-        objOrder.adressSet(this.address);
-        objOrder.metroSet(this.metro);
-        objOrder.telephoneSet(this.telephone);
-        objOrder.buttonNext1Set();
-        objOrder.dataSet(this.date);
-        objOrder.periodSet(this.rentalPeriod);
-        objOrder.colorSet(this.color);
-        objOrder.commentSet(this.comment);
-        objOrder.buttonOrderSet();
-        objOrder.buttonOrderYesSet();
-        objOrder.ModalWindowComplete();
+        objOrderPage.nameSet(this.name);
+        objOrderPage.surnameSet(this.surname);
+        objOrderPage.adressSet(this.address);
+        objOrderPage.metroSet(this.metro);
+        objOrderPage.telephoneSet(this.telephone);
+        objOrderPage.buttonNext1Set();
+        objOrderPage.dataSet(this.date);
+        objOrderPage.periodSet(this.rentalPeriod);
+        objOrderPage.colorSet(this.color);
+        objOrderPage.commentSet(this.comment);
+        objOrderPage.buttonOrderSet();
+        objOrderPage.buttonOrderYesSet();
+        objOrderPage.modalWindowComplete();
     }
 }

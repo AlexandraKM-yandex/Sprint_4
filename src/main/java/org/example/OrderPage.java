@@ -1,6 +1,5 @@
 package org.example;
 
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -8,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class Order {
+public class OrderPage {
     private WebDriver driver;
     private By headingWhoSamokat = By.xpath(".//div[@class = 'Order_Header__BZXOb' and text() = 'Для кого самокат']");
     private By fieldName = By.xpath(".//input[@placeholder = '* Имя']");
@@ -27,7 +26,7 @@ public class Order {
     private By buttonOrderYes = By.xpath(".//button[(@class ='Button_Button__ra12g Button_Middle__1CSJM' and text()='Да')]");
     private By OrderPlacedSuccess = By.xpath(".//div[@class='Order_ModalHeader__3FDaJ' and text() = 'Заказ оформлен']");
 
-    public Order(WebDriver driver) {
+    public OrderPage(WebDriver driver) {
         this.driver = driver;
     }
 
@@ -79,7 +78,6 @@ public class Order {
         } else if ("Серая безысходность".equalsIgnoreCase(color)) {
             this.driver.findElement(this.fieldColorSamokatGrey).click();
         }
-
     }
 
     public void commentSet(String comment) {
@@ -96,7 +94,7 @@ public class Order {
         this.driver.findElement(this.buttonOrderYes).click();
     }
 
-    public boolean ModalWindowComplete() {
+    public boolean modalWindowComplete() {
         WebElement Order_Placed_Success = (WebElement)(new WebDriverWait(this.driver, 3L)).until(ExpectedConditions.visibilityOfElementLocated(this.OrderPlacedSuccess));
         return Order_Placed_Success.isDisplayed();
     }

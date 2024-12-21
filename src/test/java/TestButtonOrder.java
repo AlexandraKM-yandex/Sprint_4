@@ -1,5 +1,5 @@
 import org.example.HomePage;
-import org.example.Order;
+import org.example.OrderPage;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -9,10 +9,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class ButtonOrder {
+public class TestButtonOrder {
     private WebDriver driver;
 
-    public ButtonOrder() {
+    public TestButtonOrder() {
     }
 
     @Before
@@ -27,28 +27,27 @@ public class ButtonOrder {
     }
 
     @Test
-    public void OrderSamokatInHeader() {
+    public void TestOrderSamokatInHeader() {
         HomePage objHomePage = new HomePage(this.driver);
         objHomePage.openSite();
         objHomePage.clickButtonOrderInHeader();
-        Order objOrder = new Order(this.driver);
+        OrderPage objOrderPage = new OrderPage(this.driver);
         WebDriverWait wait = new WebDriverWait(this.driver, 5L);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(objOrder.getHeadingWhoSamokat()));
-        WebElement heading = this.driver.findElement(objOrder.getHeadingWhoSamokat());
+        wait.until(ExpectedConditions.visibilityOfElementLocated(objOrderPage.getHeadingWhoSamokat()));
+        WebElement heading = this.driver.findElement(objOrderPage.getHeadingWhoSamokat());
         Assert.assertTrue(heading.isDisplayed());
-        this.driver.quit();
     }
 
     @Test
-    public void OrderSamokatInCenter() {
+    public void TestOrderSamokatInCenter() {
         HomePage objHomePage = new HomePage(this.driver);
         objHomePage.openSite();
         objHomePage.scrollPageToOrder();
         objHomePage.clickButtonOrderInCenter();
-        Order objOrder = new Order(this.driver);
+        OrderPage objOrderPage = new OrderPage(this.driver);
         WebDriverWait wait = new WebDriverWait(this.driver, 5L);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(objOrder.getHeadingWhoSamokat()));
-        WebElement heading = this.driver.findElement(objOrder.getHeadingWhoSamokat());
+        wait.until(ExpectedConditions.visibilityOfElementLocated(objOrderPage.getHeadingWhoSamokat()));
+        WebElement heading = this.driver.findElement(objOrderPage.getHeadingWhoSamokat());
         Assert.assertTrue(heading.isDisplayed());
     }
 }
